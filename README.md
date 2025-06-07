@@ -49,7 +49,7 @@ $dbUser   = 'your_cpanel_db_user';
 $dbPass   = 'your_cpanel_db_password';
 
 $cpanelUser = 'your_cpanel_username';         // Without domain
-You must replace these with your actual cPanel/database/bot credentials.
+You must replace these with your actual cPanel username.
 
 3. 💬 Get Your Telegram Chat ID
 Create a bot via @BotFather
