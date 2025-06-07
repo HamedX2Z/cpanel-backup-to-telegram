@@ -33,11 +33,7 @@ This script automates off-site backups without third-party cloud storage. It’s
 
 ### 1  📥 Download the Script
 
-Clone the repo **or** upload `backup.php` to a safe location such as:
-
-/home/<cpanel-user>/backup/
-
-> Keep it **outside** `public_html` so it isn’t web-accessible.
+Clone the repo **or** upload `backup.php` to a safe location in your host:
 
 ---
 
