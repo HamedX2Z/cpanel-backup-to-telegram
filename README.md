@@ -37,10 +37,6 @@ Clone the repo **or** upload `backup.php` to a safe location such as:
 
 /home/<cpanel-user>/backup/
 
-perl
-Copy
-Edit
-
 > Keep it **outside** `public_html` so it isn’t web-accessible.
 
 ---
@@ -72,10 +68,6 @@ Replace each placeholder with your real values and **save the file**.
 3. In a browser, open  
 
 https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates
-
-yaml
-Copy
-Edit
 
 4. Locate `"chat":{"id": <NUMBER>}` — that number is your **`chatId`**.
 
