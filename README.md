@@ -50,7 +50,7 @@ $dbName     = 'cpanel_db_name';
 $dbUser     = 'cpanel_db_user';
 $dbPass     = 'cpanel_db_password';
 
-$cpanelUser = 'cpanel_username';         // without domain
+$cpanelUser = 'cpanel_username';         // your actual cpanel username
 ~~~
 
 Replace each placeholder with your real values and **save the file**.
@@ -60,12 +60,9 @@ Replace each placeholder with your real values and **save the file**.
 ### 3  💬 Get Your Telegram Chat ID
 
 1. Create a bot via **[@BotFather](https://t.me/BotFather)**  
-2. Send a message (e.g. `/hi`) to your new bot  
-3. In a browser, open  
-
-https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates
-
-4. Locate `"chat":{"id": <NUMBER>}` — that number is your **`chatId`**.
+2. Send a message (e.g. `/start`) to your new bot  
+3. Copy your Bot token and place it in the variable shown in step 2.  
+4. Use a Telegram bot like @userinfobot to find your Account ID and place it in the variable shown in step 2.
 
 ---
 
