@@ -1,109 +1,136 @@
 # PHP Telegram Backup Script 📦🤖
 
-A simple PHP script that creates a full backup of your **MySQL database** and **`public_html` folder** on a cPanel host, compresses it into a `.zip` file, and sends it directly to a Telegram chat using a bot.
+A simple PHP script that creates a full backup of your **MySQL database** and **`public_html` folder** on a cPanel host, compresses it into a `.zip` archive, and sends it straight to a Telegram chat via a bot.
 
 ---
 
 ## 📋 About
 
-This script is designed to automate server backups without needing third-party cloud storage. It’s perfect for developers or sysadmins hosting Telegram bots or PHP apps on shared or cPanel servers and wanting offsite backups via Telegram.
+This script automates off-site backups without third-party cloud storage. It’s ideal for developers or sysadmins who run PHP apps (or Telegram bots) on shared or cPanel servers and want quick, external backups delivered to Telegram.
 
 ---
 
 ## 🚀 Features
 
 - ✅ Dumps your MySQL database  
-- ✅ Compresses entire `public_html` directory  
-- ✅ Sends backup to Telegram via bot  
-- ✅ Easy to schedule using Cron Jobs  
-- ✅ Lightweight and requires no external dependencies  
+- ✅ Compresses the entire `public_html` directory  
+- ✅ Sends backups to Telegram using a bot  
+- ✅ Easy to automate with Cron jobs  
+- ✅ Lightweight — no external PHP libraries required  
 
 ---
 
 ## 📁 Contents
 
-- `backup.php` – the main script  
-- `README.md` – project info and setup guide  
+| File          | Purpose                           |
+|---------------|-----------------------------------|
+| `backup.php`  | Main backup script                |
+| `README.md`   | Project information & setup guide |
 
 ---
 
 ## ⚙️ Setup Instructions
 
-### 1. 📥 Download the Script
+### 1  📥 Download the Script
 
-Clone the repo or upload `backup.php` to a safe folder in your cPanel home directory (e.g., `/home/username/backup/` — **not** inside `public_html`).
+Clone the repo **or** upload `backup.php` to a safe location such as:
 
----
+/home/<cpanel-user>/backup/
 
-### 2. 🛠️ Configuration
+perl
+Copy
+Edit
 
-Edit the following variables at the top of the script:
-
-```php
-$botToken = 'YOUR_TELEGRAM_BOT_TOKEN';        // Get from BotFather
-$chatId   = 'YOUR_TELEGRAM_CHAT_ID';          // Use getUpdates to find your ID
-
-$dbHost   = 'localhost';                      // Usually localhost for cPanel
-$dbName   = 'your_cpanel_db_name';            // Full DB name
-$dbUser   = 'your_cpanel_db_user';
-$dbPass   = 'your_cpanel_db_password';
-
-$cpanelUser = 'your_cpanel_username';         // Without domain
-You must replace these with your actual cPanel username.
-
-3. 💬 Get Your Telegram Chat ID
-Create a bot via @BotFather
-
-Send a message to your bot
-
-Visit this URL (replacing TOKEN):
-
-https://api.telegram.org/bot<TOKEN>/getUpdates
-Find your chat.id in the JSON response
-
-4. 🧪 Test the Script Manually
-Run the script via command line or a temporary PHP file:
-
-php -q /home/your_cpanel_user/backup/backup.php
-If successful, a .zip file should be sent to your Telegram chat.
-
-5. 📅 Set Up Cron Job
-To automate the backup (e.g., daily at 3 AM):
-
-Log in to cPanel
-
-Go to Cron Jobs
-
-Add a new cron job:
-
-0 3 * * * php -q /home/your_cpanel_user/backup/backup.php
-📌 Make sure PHP path and file path are correct.
-
-💡 Tips
-Ensure mysqldump is available on your server (most cPanel hosts support it).
-
-Don’t store backups inside public_html to avoid exposing them to the internet.
-
-Telegram has a file size limit (approx. 50 MB for bots). If needed, consider excluding large folders or splitting files.
-
-🤝 Contributing
-Suggestions, improvements, or feature requests are welcome. Feel free to fork this repo or open issues.
-
-🛡️ License
-This project is licensed under the MIT License.
-
-🙏 Acknowledgments
-Telegram Bot API
-
-cPanel / php.net documentation
-
-Community scripts that inspired this tool
+> Keep it **outside** `public_html` so it isn’t web-accessible.
 
 ---
 
-✅ This version:
-- Keeps code inside proper code blocks
-- Fixes indentation and block formatting
-- Prevents any overflow or rendering issues on GitHub
+### 2  🛠️ Configuration
 
-Let me know if you want this turned into a downloadable `README.md` file.
+Open **`backup.php`** and edit the variables at the top:
+
+~~~php
+$botToken   = 'YOUR_TELEGRAM_BOT_TOKEN'; // from @BotFather
+$chatId     = 'YOUR_TELEGRAM_CHAT_ID';   // see step 3 below
+
+$dbHost     = 'localhost';               // usually localhost on cPanel
+$dbName     = 'cpanel_db_name';
+$dbUser     = 'cpanel_db_user';
+$dbPass     = 'cpanel_db_password';
+
+$cpanelUser = 'cpanel_username';         // without domain
+~~~
+
+Replace each placeholder with your real values and **save the file**.
+
+---
+
+### 3  💬 Get Your Telegram Chat ID
+
+1. Create a bot via **[@BotFather](https://t.me/BotFather)**  
+2. Send a message (e.g. `/hi`) to your new bot  
+3. In a browser, open  
+
+https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates
+
+yaml
+Copy
+Edit
+
+4. Locate `"chat":{"id": <NUMBER>}` — that number is your **`chatId`**.
+
+---
+
+### 4  🧪 Test the Script Manually
+
+SSH into your cPanel account (or use the Terminal feature) and run:
+
+~~~bash
+php -q /home/<cpanel-user>/backup/backup.php
+~~~
+
+If everything is configured correctly, you’ll receive a `.zip` file in the Telegram chat.
+
+---
+
+### 5  📅 Set Up a Cron Job
+
+Automate daily backups at **03:00** server time:
+
+1. Log in to **cPanel → Cron Jobs**  
+2. Add a new Cron entry:
+
+~~~bash
+0 3 * * * php -q /home/<cpanel-user>/backup/backup.php
+~~~
+
+> **Tip:** Confirm the `php` path if your host uses a version-specific binary (e.g. `php81`).
+
+---
+
+## 💡 Tips
+
+- **`mysqldump`** must be available (it is on most cPanel hosts).  
+- Do **not** store backup archives inside `public_html`; keep them private.  
+- Telegram bots can upload files up to ~50 MB. For larger data, exclude big folders or split the archive.  
+- Rotate or delete old archives if disk space is limited.
+
+---
+
+## 🤝 Contributing
+
+Pull requests, issues, and suggestions are welcome! Feel free to fork and improve.
+
+---
+
+## 🛡️ License
+
+Distributed under the **MIT License**. See the [`LICENSE`](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- Telegram Bot API  
+- cPanel / php.net documentation  
+- Community scripts and tutorials that inspired this tool
