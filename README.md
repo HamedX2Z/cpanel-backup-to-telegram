@@ -80,7 +80,7 @@ If everything is configured correctly, you’ll receive a `.zip` file in the Tel
 
 ### 5  📅 Set Up a Cron Job
 
-Automate daily backups at **03:00** server time:
+Automate daily backups at **03:00** server time or any other timeframe that you want!:
 
 1. Log in to **cPanel → Cron Jobs**  
 2. Add a new Cron entry:
