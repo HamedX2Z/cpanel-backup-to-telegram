@@ -58,18 +58,12 @@ Send a message to your bot
 
 Visit this URL (replacing TOKEN):
 
-bash
-Copy
-Edit
 https://api.telegram.org/bot<TOKEN>/getUpdates
 Find your chat.id in the JSON response
 
 4. 🧪 Test the Script Manually
 Run the script via command line or a temporary PHP file:
 
-bash
-Copy
-Edit
 php -q /home/your_cpanel_user/backup/backup.php
 If successful, a .zip file should be sent to your Telegram chat.
 
@@ -82,9 +76,6 @@ Go to Cron Jobs
 
 Add a new cron job:
 
-swift
-Copy
-Edit
 0 3 * * * php -q /home/your_cpanel_user/backup/backup.php
 📌 Make sure PHP path and file path are correct.
 
@@ -107,10 +98,6 @@ Telegram Bot API
 cPanel / php.net documentation
 
 Community scripts that inspired this tool
-
-yaml
-Copy
-Edit
 
 ---
 
