@@ -43,7 +43,7 @@ Open **`backup.php`** and edit the variables at the top:
 
 ~~~php
 $botToken   = 'YOUR_TELEGRAM_BOT_TOKEN'; // from @BotFather
-$chatId     = 'YOUR_TELEGRAM_CHAT_ID';   // see step 3 below
+$chatId     = 'YOUR_TELEGRAM_CHAT_ID';   // Your Accounr ID from @userinfobot
 
 $dbHost     = 'localhost';               // usually localhost on cPanel
 $dbName     = 'cpanel_db_name';
